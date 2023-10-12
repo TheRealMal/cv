@@ -1,0 +1,232 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{ulem}
+\usepackage{contour}
+\usepackage{latexsym}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[english]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage[a4paper, margin=0.25in]{geometry}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor   = RoyalBlue!75!white,
+}
+
+\raggedright
+\raggedbottom
+\urlstyle{same}
+\setlength{\tabcolsep}{0in}
+\AtBeginDocument{\normalem}
+
+\newlength{\uppercaseHeight}
+\AtBeginDocument{\settoheight{\uppercaseHeight}{A}}
+
+% Ensure output is parsable
+\pdfgentounicode=1
+\input{glyphtounicode}
+
+% Sections formatting
+\titleformat{\section}{\vspace{-9pt}\scshape\raggedright\large}{}{0em}{}[\color{gray}\titlerule\vspace{-7pt}]
+
+% Beautiful underline
+\renewcommand{\ULdepth}{2pt}
+\contourlength{1pt}
+
+\newcommand{\beauline}[1]{%
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+    \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      {\small#3} & \textit{\small #4} \\[-0.075em]
+    \end{tabular*} \\[-0.05em]
+}
+
+\newcommand{\resumeHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*} \vspace{-3pt}
+}
+
+\newcommand{\resumeSmallHeading}[1]{
+    \item {\small#1 \vspace{-0.75em}}
+}
+
+\newcommand\badgeStrut{\rule[-1pt]{0pt}{\uppercaseHeight}}
+\newtcbox{\badge}{
+  on line,
+  enhanced,
+  arc=3pt,
+  top=2pt,
+  left=5pt,
+  right=5pt,
+  bottom=2pt,
+  boxsep=0pt,
+  boxrule=0.25pt,
+  colback=white!95!gray,
+  enlarge bottom by=2pt,
+  fontupper=\scriptsize\badgeStrut\color{black},
+}
+\newcommand{\badges}[1]{
+  \foreach \b in #1 {
+    \badge{\b}\hspace{-3pt}
+  }
+}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.125in, label={}]}
+\newcommand{\resumeItemListStart}{\begin{itemize}\vspace{-4pt}}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+\newcommand{\link}[2]{\href{#1}{\beauline{#2}}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\begin{document}
+
+% ------------------------------------------------------------ %
+
+\begin{center}
+	\textbf{\Huge Malyutin Roman} \\[0.5em]
+	\link{mailto:therealmal23@gmail.com}{therealmal23@gmail.com} ~
+	\link{https://github.com/TheRealMal}{github.com/TheRealMal} ~
+	\link{https://gitlab.com/TheRealMal}{gitlab.com/TheRealMal} ~
+    \link{https://leetcode.com/TheRealMal}{leetcode.com/TheRealMal} ~
+	\link{https://t.me/therealmal}{t.me/therealmal}
+\end{center}
+
+% ------------------------------------------------------------ %
+
+\section{Education}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Bauman Moscow State Technical University}{Sep. 2020 - May 2026}
+{Specialist of Computer Security}{Moscow, Russia}
+
+\resumeSubheading
+{School 21}{Aug. 2023 - Nowadays}
+{Multidirectional programming institution}{Moscow, Russia}
+\badges{{C, C++, Bash, Databases, Algorithms and Data Structures, Soft skills, DevOps}}
+
+\resumeSubHeadingListEnd
+
+% ------------------------------------------------------------ %
+
+\section{Projects}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Sonatype Nexus tools}{Aug. 2023}
+{Internship at CryptoPro $|$ \link{https://github.com/TheRealMal/nexus-manager}{github.com/TheRealMal/nexus-manager}}{Moscow, Russia}
+\badges{{Python, API, Nexus, Docker}}
+\resumeItemListStart
+\resumeItem{Tools for managing artifacts in Sonatype Nexus repositories}
+\resumeItem{Designed and coded using Python language, versions packed to .whl files for Linux installation \& usage}
+\resumeItem{Can be configured for any nexus server, supports filtration for platforms and targets}
+\resumeItem{Supports multiple command line flags to specify script behavior}
+\resumeItemListEnd
+
+\resumeSubheading
+{Telegram bot for reshipping service}{Jun. 2023}
+{Commercial project}{Moscow, Russia}
+\badges{{Python, Telethon}}
+\resumeItemListStart
+\resumeItem{User friendly telegram interface}
+\resumeItem{Admin control panel to manage rates, orders, statuses etc.}
+\resumeItem{Automatically parses banks/exchanges to update current rates}
+\resumeItemListEnd
+
+\resumeSubheading
+{CLI Python bot}{Jan. 2022 -- Oct. 2022}
+{PET project $|$ \link{https://github.com/TheRealMal/TheRealMalAIO}{github.com/TheRealMal/TheRealMalAIO}}{Moscow, Russia}
+\badges{{Python, Discord.py, API, CLI UI}}
+\resumeItemListStart
+\resumeItem{Imitates human behavior and generates messages based on discord channel messages.}
+\resumeItem{Automatically joins discord servers with some intermediate tasks: adding reaction to discord message, pushing buttons, sending necessary messages, solving captcha.}
+\resumeItem{API for authorization and message generation.}
+\resumeItem{Fully headless (All actions are made through requests w/o selenium etc.).}
+\resumeItem{Selling 18 keys resulted in \textbf{200.000 rub.} profit.}
+\resumeItemListEnd
+
+\resumeSubheading
+{Browser Extension}{Mar. 2022 -- May. 2022}
+{PET project $|$ \link{https://github.com/TheRealMal/ExtensionTRM}{github.com/TheRealMal/ExtensionTRM}}{Moscow, Russia}
+\badges{{JavaScript, HTML, CSS, API, Browser Extension}}
+\resumeItemListStart
+\resumeItem{Automates user actions when waiting and buying limited items. }
+\resumeItem{Supports multiple sites and multiple profiles for user details.}
+\resumeItem{Bypasses site bot \& fraud protection.}
+\resumeItem{Selling 8 keys resulted in \textbf{105.000 rub.} profit.}
+\resumeItemListEnd
+
+\resumeSubheading
+{Web Library System}{Dec. 2021}
+{Coursework $|$ \link{https://github.com/TheRealMal/LibrarySystem}{github.com/TheRealMal/LibrarySystem}}{Moscow, Russia}
+\badges{{JavaScript, HTML, CSS, API, Hash Algorithms}}
+\resumeItemListStart
+\resumeItem{Web application for searching and managing books.}
+\resumeItem{Search was conducted using the Rabin-Karp algorithm and indexing.}
+\resumeItemListEnd
+
+\resumeSubheading
+{Own services (Discord paid group)}{Jan. 2019 -- Jun. 2022}
+{Commercial project}{Moscow, Russia}
+\badges{{Python, REST, Web Scraping, Cuncurrency, JavaScript, ExpressJS, OAuth2, Web Vulnerabilities, WebSockets, }}
+\resumeItemListStart
+\resumeItem{Developed restock monitors (web scrappers) for different websites.}
+\resumeItem{Did researches to find websites bot protection bypasses, queue bypasses, etc.}
+\resumeItem{Reversed JavaScript bots and browser extensions.}
+\resumeItem{Developed WebSockets API for CLI Bot (Authorization, users notification, secure some algorithms).}
+\resumeItem{Developed web-dashboard and automatic payment system for group subscription.}
+\resumeItem{Developed first Adidas inventory checker using its website hidden API and shop tablets hidden API}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+% ------------------------------------------------------------ %
+
+\section{Skills}
+\resumeSubHeadingListStart
+
+\resumeSmallHeading
+{\textbf{Programming Languages}:\badges{{Python, Go, C, C++, JavaScript, Bash}}}
+
+\resumeSmallHeading
+{\textbf{Databases}:\badges{{PostgreSQL, SQLalchemy, pandas}}}
+
+\resumeSmallHeading
+{\textbf{Technologies}:\badges{{Docker, Kubernetes, ExpressJS, Sonatype Nexus, Burp Suite}}}
+
+\resumeSmallHeading
+{\textbf{Misc.}:\badges{{Linux, SQL, HTML/CSS, Grafana, REST API, WebSockets, JSON, Selenium, Telethon}}}
+
+\resumeSmallHeading
+{\textbf{Spoken Languages}:\badges{{Russian (native speaker), English (upper-intermediate)}}}
+
+\resumeSubHeadingListEnd
+
+\section{Interests}
+\resumeSubHeadingListStart
+
+\resumeSmallHeading{\badges{{Backend Development, DevOps, Cryptography, Web-Security}}}
+
+\resumeSubHeadingListEnd
+
+\end{document}
