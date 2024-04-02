@@ -18,17 +18,17 @@ jobs:
         with:
           root_file: sec/CV.tex
           
-      - name: Upload PDF as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: CV-DEV.pdf
-          path: dev/CV.pdf
+      # - name: Upload PDF as artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: CV-DEV.pdf
+      #     path: dev/CV.pdf
 
-      - name: Upload PDF as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: CV-SEC.pdf
-          path: sec/CV.pdf
+      # - name: Upload PDF as artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: CV-SEC.pdf
+      #     path: sec/CV.pdf
           
       - name: Create Release
         id: create_release
@@ -48,7 +48,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: CV-DEV.pdf
+          asset_path: dev/CV.tex
           asset_name: CV-DEV.pdf
           asset_content_type: application/pdf
           
@@ -59,6 +59,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: CV-SEC.pdf
+          asset_path: sec/CV.tex
           asset_name: CV-SEC.pdf
           asset_content_type: application/pdf
