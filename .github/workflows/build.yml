@@ -1,3 +1,4 @@
+
 name: Build LaTeX document
 on: [push]
 jobs:
@@ -5,15 +6,59 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         
       - name: Compile LaTeX document (dev)
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v2
         with:
           root_file: dev/CV.tex
           
-      - name: Upload PDF file (dev)
-        uses: actions/upload-artifact@v4
+      - name: Compile LaTeX document (sec)
+        uses: xu-cheng/latex-action@v2
         with:
-          name: PDF
+          root_file: sec/CV.tex
+          
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: CV-DEV.pdf
           path: dev/CV.pdf
+
+      - name: Upload PDF as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: CV-SEC.pdf
+          path: sec/CV.pdf
+          
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v0.1-${{ github.run_number }}
+          release_name: Automated build v0.1-${{ github.run_number }}
+          draft: false
+          prerelease: false
+          
+      - name: Upload Release Asset
+        id: upload-release-asset-dev 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: CV-DEV.pdf
+          asset_name: CV-DEV.pdf
+          asset_content_type: application/pdf
+          
+      - name: Upload Release Asset
+        id: upload-release-asset-sec
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: CV-SEC.pdf
+          asset_name: CV-SEC.pdf
+          asset_content_type: application/pdf
